@@ -1,0 +1,19 @@
+﻿<Window x:Class="KanbanProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KanbanProject"
+        mc:Ignorable="d"
+        Title="Kanban" Height="336.072" Width="409.2" ResizeMode="NoResize">
+    <Grid HorizontalAlignment="Left" Margin="0,0,0,-3" Width="399">
+        <Grid.Background>
+            <ImageBrush ImageSource="/KanbanProject;component/Files/blurred-background-5.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Label Content="Hello and welcome to Kanban!" FontSize="40" FontFamily="Freestyle Script" HorizontalAlignment="Left" Margin="42,44,0,0" VerticalAlignment="Top" Height="58" Width="345"/>
+        <Label Content="Please choose one of the following options:" FontFamily="Corbel" FontSize="16" HorizontalAlignment="Left" Margin="42,94,0,0" VerticalAlignment="Top" Height="30" Width="328"/>
+        <Button Content="Login" x:Name="login" Background="Transparent" BorderBrush="White" BorderThickness="3" FontFamily="Freestyle Script" FontSize="25" HorizontalAlignment="Left" Margin="169,153,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="Login_Click"/>
+        <Button Content="Register" x:Name="register" HorizontalAlignment="Left" Background="Transparent" BorderBrush="White" BorderThickness="3" FontFamily="Freestyle Script" FontSize="25" Margin="169,209,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="Register_Click"/>
+
+    </Grid>
+</Window>

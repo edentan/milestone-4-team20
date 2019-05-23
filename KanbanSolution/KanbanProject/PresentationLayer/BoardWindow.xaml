@@ -1,0 +1,64 @@
+﻿<Window x:Class="KanbanProject.PresentationLayer.BoardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KanbanProject.PresentationLayer"
+        mc:Ignorable="d"
+        Title="Board" Height="486" Width="863.4" ResizeMode="NoResize">
+    <Grid Margin="0,0,0,-3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64.8" />
+            <RowDefinition Height="71.2" />
+            <RowDefinition Height="247.2"/>
+            <RowDefinition Height="112.8"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="571.6"/>
+            <ColumnDefinition Width="8.4"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/KanbanProject;component/Files/blurred-background-5.jpg"/>
+        </Grid.Background>
+        <Label Name="header" FontSize="40" FontFamily="Freestyle Script" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="58" Width="345" Grid.RowSpan="2"/>
+        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Margin="0,1.2,110,10.2" Grid.RowSpan="2" Grid.Row="1">
+            <DataGrid Name="dataGrid" ItemsSource="{Binding GridView, Mode=TwoWay}" SelectedItem="{Binding Selected}" SelectionChanged="DataGrid_SelectionChanged" Background="Transparent" BorderBrush="Transparent" HeadersVisibility="Column" 
+                HorizontalAlignment="Left" RowBackground="Transparent" BorderThickness="1" VerticalGridLinesBrush="White" HorizontalGridLinesBrush="White"
+                      FontFamily="Corbel" FontSize="14" IsReadOnly="True" MinRowHeight="25" CanUserSortColumns="False" CanUserReorderColumns="False" IsSynchronizedWithCurrentItem="False" CanUserResizeColumns="False">
+            </DataGrid>
+
+        </ScrollViewer>
+
+        <Button  Name="addTask" Content="Add Task" HorizontalAlignment="Left" Margin="472,9.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="90" Background="Transparent" FontFamily="Freestyle Script" BorderBrush="White" BorderThickness="3" Height="35"  FontSize="25" Click="AddTask_Click"/>
+        <Button  Name="logOut" Content="Log Out" HorizontalAlignment="Left" Margin="184,10,-265.2,0" VerticalAlignment="Top" Width="90" Background="Transparent" FontFamily="Freestyle Script" BorderBrush="White" BorderThickness="3" Height="38"  FontSize="25" Click="LogOut_Click" Grid.Column="1"/>
+        <Button Name="editTask" Content="Edit Task" HorizontalAlignment="Left" Margin="10,9.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="85" Background="Transparent" FontFamily="Freestyle Script" BorderBrush="White" BorderThickness="3" Height="35"  FontSize="25"  Click="EditTask_Click" RenderTransformOrigin="-1.43,0.337" IsEnabled="False"/>
+        <Button Name="deleteTask" Content="Delete Task" HorizontalAlignment="Left" Margin="121,9.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="108" Background="Transparent" FontFamily="Freestyle Script" BorderBrush="White" BorderThickness="3" Height="35" FontSize="25" Click="DeleteTask_Click" IsEnabled="False"/>
+        <TextBox Name="searchTxt" HorizontalAlignment="Left" Height="23" Margin="250,21.8,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding SearchTerm, Mode=OneWayToSource}" VerticalAlignment="Top" Width="117" BorderBrush="Transparent" FontFamily="Corbel"/>
+        <Button Name="searchB" Content="Search" HorizontalAlignment="Left" Margin="385,10.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="64"  FontFamily="Freestyle Script" Background="Transparent" BorderBrush="White" BorderThickness="3" Height="34"  FontSize="25" Click="SearchB_Click"/>
+        <DataGrid Name="dataGridCol" HorizontalAlignment="Left" Height="188" Margin="19,10.2,-192.2,0" 
+                  Background="Transparent" BorderBrush="Transparent" Grid.RowSpan="2" VerticalAlignment="Top" Width="184" HeadersVisibility="Column"
+                  RowBackground="Transparent" BorderThickness="1" VerticalGridLinesBrush="White" HorizontalGridLinesBrush="White" FontFamily="Corbel" FontSize="14"
+                  MinRowHeight="25" CanUserSortColumns="False" CanUserReorderColumns="False" IsReadOnly="True"
+                  ItemsSource="{Binding GridViewCol, Mode=OneWay}" SelectedItem="{Binding SelectedCol}" Grid.Column="1" Grid.Row="1" />
+        <Button Name="MoveForward" IsEnabled="True" HorizontalAlignment="Left" Margin="241,1.2,-265.2,0" BorderBrush="Transparent" VerticalAlignment="Top" Width="33" Height="34" Click="MoveBackwords_Click" RenderTransformOrigin="-0.516,2.198" Grid.Column="1" Grid.Row="1">
+            <Button.Background>
+                <ImageBrush ImageSource="/KanbanProject;component/Files/arrowUp.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="MoveBack" IsEnabled="True" HorizontalAlignment="Left" Margin="241,40.2,-265.2,0" BorderBrush="Transparent" Grid.Row="1" VerticalAlignment="Top" Width="33" Height="34" Click="MoveForwards_Click" Grid.RowSpan="2" Grid.Column="1">
+            <Button.Background>
+                <ImageBrush ImageSource="/KanbanProject;component/Files/arrowDown.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="setMaxLength" Content="Update " HorizontalAlignment="Left" Margin="211,163,-265.2,0" Grid.Row="2" VerticalAlignment="Top" Width="63" Height="32" Background="Transparent" BorderBrush="White" BorderThickness="3" FontFamily="Freestyle Script" FontSize="22" Click="SetMaxLength_Click" Grid.Column="1"/>
+        <TextBox Name="MaxLength" BorderBrush="Transparent" HorizontalAlignment="Left" Height="23" FontFamily="Corbel" Margin="134,163,-153.2,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding MaxLength}" VerticalAlignment="Top" Width="28" Grid.Column="1"/>
+        <Label Content="Column's limit of task:" HorizontalAlignment="Left" Margin="9,163,-135.2,0" Grid.Row="2" VerticalAlignment="Top" Width="135" Height="28" Grid.Column="1" FontFamily="Corbel"/>
+        <TextBox Name="AddName" BorderBrush="Transparent" HorizontalAlignment="Left" Height="23" Margin="110,213,-192.2,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding NewColumn}" VerticalAlignment="Top" Width="91" TextChanged="AddName_TextChanged" Grid.Column="1"/>
+        <Button x:Name="Add" Content="Add" IsEnabled="True" HorizontalAlignment="Left" Margin="211,214,-266.2,0" Background="Transparent" BorderBrush="White" BorderThickness="3" FontFamily="Freestyle Script" FontSize="22" Grid.Row="2" VerticalAlignment="Top" Width="64" Height="32" Click="Add_Click" Grid.Column="1"/>
+        <Button Name="RemoveColumn" Content="Remove" HorizontalAlignment="Left" Margin="211,13.8,-265.2,0" Background="Transparent" BorderBrush="White" BorderThickness="3" FontFamily="Freestyle Script" FontSize="22" Grid.Row="3" VerticalAlignment="Top" Width="63" Height="32" Click="RemoveColumn_Click" Grid.Column="1" RenderTransformOrigin="-0.272,0.366"/>
+        <Label Content="Column's name:" FontFamily="Corbel" Grid.Column="1" HorizontalAlignment="Left" Margin="10,213,-101.2,0" Grid.Row="2" VerticalAlignment="Top" Width="100"/>
+        <RadioButton Name="creationD" Content="Creation date" FontFamily="Corbel" HorizontalAlignment="Left" Margin="472,10,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <RadioButton Name="dueD" Content="Due date" FontFamily="Corbel" HorizontalAlignment="Left" Margin="472,31,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.997,-0.072"/>
+        <Button Name="sort" Content="Sort" HorizontalAlignment="Left" Margin="504,50,0,0" Grid.Row="2" VerticalAlignment="Top" Width="58" FontFamily="Freestyle Script" Background="Transparent" BorderBrush="White" BorderThickness="3" Height="32"  FontSize="25" Click="Sort_Click"/>
+    </Grid>
+</Window>
